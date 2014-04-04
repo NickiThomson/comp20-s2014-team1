@@ -1,0 +1,17 @@
+Quick split: algorithms!!!!!
+
+
+Data needed to be inserted for a given person:
+
+Name
+Array of ints to representative of bills
+Credit?
+Willing someone to owe you
+Amount this person owes or if even split
+Tip?
+
+Data needed for a group:
+Array of people
+Total bill
+Tip?
+Even split or each pays own
