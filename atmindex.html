@@ -1,68 +1,163 @@
 <!DOCTYPE html>
-
-<html>
-
-    <head>
-        <meta charset="utf-8">
-        <title>CheckIt</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CheckIt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-        <!-- Le styles -->
-        <link href="bootstrap.css" rel="stylesheet">
-        <style type="text/css">
-          body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-          }
-          .sidebar-nav {
-            padding: 9px 0;
-          }
+    <!-- Le styles -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
 
-          @media (max-width: 980px) {
-            /* Enable use of floated navbar text */
-            .navbar-text.pull-right {
-              float: none;
-              padding-left: 5px;
-              padding-right: 5px;
-            }
-          }
-        </style>
-            <link href="bootstrap-responsive.css" rel="stylesheet">
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="bootstrap-responsive.css" rel="stylesheet">
 
-        <!--<script src="http://maps.google.com/maps/api/js?sensor=true"></script>-->
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
-        <script src="atmmap.js"></script>
-        <link rel="stylesheet" href="atmstyle.css" />
-    </head>
+    <link href="indexstyle.css" rel="stylesheet">
+    <script src="Chart.js"></script>
+    <script src="mycharts.js"></script>
 
-    <body onload="init()">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container-fluid header">
-              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="brand" href="#">CheckIt</a>
-              <div class="nav-collapse collapse">
-                <p class="navbar-text pull-right">
-                  Logged in as <a href="#" class="navbar-link">Username</a>
-                </p>
-                <ul class="nav">
-                  <li><a href="#">My Account</a></li>
-                  <li><a href="#about">QuickSplit</a></li> 
-                  <li class="active"><a href="#about">Find an ATM</a></li>
-                </ul>
-              </div><!--/.nav-collapse -->
-            </div>
-          </div>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body onload="init()">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid header">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">CheckIt</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+            <ul class="nav">
+              <li class="active"><a href="/myaccount">My Account</a></li>
+              <li><a href="/quicksplit">QuickSplit</a></li> 
+              <li><a href="/atm">Find an ATM</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+    </div>
 
-        <div id="map_canvas"></div>
-    </body>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <h1>My Account</h1>
+          <div class="row-fluid">
+            <div class="span6">
+              <h2>Money I Owe</h2>
+              <canvas id="iOwe" width="400" height="400"></canvas>
+            </div><!--/span-->
+            <div class="span6">
+              <h2>Money Owed</h2>
+              <canvas id="uOwe" width="400" height="400"></canvas>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span12">
+              <h2>Previous Transactions</h2>
+              <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Partner(s)</th>
+                  <th>Amount</th>
+                  <th>For</th>
+                </tr>
+                <tr>
+                  <td>4/10/14</td>
+                  <td>Ming C.</td>
+                  <td>$13.25</td>
+                  <td>Helen's</td>
+                </tr>
+                <tr>
+                  <td>3/28/14</td>
+                  <td>Jasper D.</td>
+                  <td>$12.25</td>
+                  <td>Boston Burger Co.</td>
+                </tr>
+                <tr>
+                  <td>3/16/14</td>
+                  <td>Tyler L.</td>
+                  <td>-$2.75</td>
+                  <td>Brown 'n Brew</td>
+                </tr>
+                <tr>
+                  <td>3/05/14</td>
+                  <td>Briana G.</td>
+                  <td>$7.00</td>
+                  <td>Chinese Food</td>
+                </tr>
+                <tr>
+                  <td>2/28/14</td>
+                  <td>Rebecca H.</td>
+                  <td>-$25.00</td>
+                  <td>Concert Tickets</td>
+                </tr>
+                <tr>
+                  <td>2/21/14</td>
+                  <td>Nicki T.</td>
+                  <td>-$6.75</td>
+                  <td>Taxi fare</td>
+                </tr>
+                <tr>
+                  <td>1/30/14</td>
+                  <td>Lisa F.</td>
+                  <td>$8.00</td>
+                  <td>Movie Ticket</td>
+                </tr>
+              </table>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>
