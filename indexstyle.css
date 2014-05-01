@@ -6,9 +6,7 @@
   border: none;
 }
 
-.header .brand, 
-.header .navbar-text, 
-.header .navbar-link,
-.header .account {
-	color: black;
+table, th, td {
+	width: 1000px;
+	border: 1px solid;
 }
