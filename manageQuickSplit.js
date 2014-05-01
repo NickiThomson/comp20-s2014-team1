@@ -1,5 +1,6 @@
 var results;
 var returnStr; 
+var globalPeople = new Array;
 
 function testingPreInit(){
 	results = new Object;
@@ -126,8 +127,41 @@ function initializeBills(twenties, tens, fives, ones){
 	return  bills;
 }
 
+function managerPreInitAddPerson(){
+ 
+	var name = document.getElementById('name');
+	var twenties = document.getElementById('twenties');
+	var tens = document.getElementById('tens');
+	var fives = document.getElementById('fives');
+	var ones = document.getElementById('ones');
+	var owes = document.getElementById('owes');
+
+	var bills = initializeBills(twenties.value, tens.value, fives.value, ones.value);
+	globalPeople[globalPeople.length] = {
+		name: name.value,
+		owes: owes.value,
+		bills: bills,
+
+	};
+
+	name.value = "User";
+	twenties.value = 0;
+	tens.value = 0;
+	fives.value = 0;
+	ones.value = 0;
+	owes.value = 0;
+}
+
+function managerPreInitReady(){
+	managerPreInitAddPerson();
+	var total = window.prompt("What is the total owed by your group? (if unsure enter anything, the program will self correct)");
+	var tip = window.prompt("What tip percentage would you like everyone to pay?");
+	managerInit(globalPeople, total, tip);
+}
+
 function managerInit (passedPeople, passedTotalOwed, tipPercentage){
-//Functions for data checking and tip calculation
+
+	//Functions for data checking and tip calculation
 	if(!matchingTotals(passedPeople, passedTotalOwed)){
 		//prompt box to continue with the passed people total
 		var peopleSum = sumTotals(passedPeople)
@@ -198,13 +232,14 @@ function makeComprehencible(){
 		returnStr += results.people[person].name;
 		if (results.people[person].owes > 0){
 			returnStr += " still owes $";
-			returnStr += roundTo2db(results.people[person].owes);
+			returnStr += results.people[person].owes;
 		} else {
 			returnStr += " is still owed $";
-			returnStr += roundTo2db((0 - results.people[person].owes));
+			returnStr += (0 - results.people[person].owes);
 		}
 		returnStr += "\n \n";
 	}
+	window.alert(returnStr);
 
 }
 
