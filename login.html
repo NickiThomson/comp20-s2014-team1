@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="loginstyle.css">
 <title>CheckIt</title>
 	<script>
-		
+		console.log("Hello World");
 	</script>
 </head>
 <body>
@@ -13,8 +13,8 @@
 <div id="Border">
 <div id="LogIn">
 	<h2>Sign In</h2>
-	<h3>Username</br><input type="text" id="username" size="30"></h3>
-	<h3>Password</br><input type="text" id="password" size="30"></h3>
+	<h3>Username</br><input type="text" onchange="setUsername"id="username" size="30"></h3>
+	<h3>Password</br><input type="text" onchange="setPassword"id="password" size="30"></h3>
 	<h4><button type="button" onclick="alert('Signing In...')">Sign In</button></h4>
 </div>
 </div>
