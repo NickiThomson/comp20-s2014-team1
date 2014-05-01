@@ -1,0 +1,14 @@
+.header {
+  background-color: #85EDA1;
+}
+
+.navbar-inner {
+  border: none;
+}
+
+.header .brand, 
+.header .navbar-text, 
+.header .navbar-link,
+.header .account {
+	color: black;
+}
