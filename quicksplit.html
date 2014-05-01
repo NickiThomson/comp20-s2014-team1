@@ -1,67 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!--<link rel="stylesheet" href="quicksplitstyle.css"> -->
-<script src="manageQuickSplit.js"></script>
-<script src="quickSplit.js"></script>
-<title>CheckIt</title>
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" href="quicksplitstyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="manageQuickSplit.js"></script>
+	<script src="quickSplit.js"></script>
+	<title>CheckIt</title>
 </head>
+
 <body>
-<h1> CheckIt</h1>
-<div id="QuickSplit">
-	<!-- <table><caption>QuickSplit</caption>
-		<tr>
-			<td>User 1:</td>
-			<td>User 2:</td>
-			<td>User 3:</td>
-		</tr>
-		<tr>
-			<td>$1 <input type="text" id="ones" size="1"></td>
-			<td>$1 <input type="text" id="ones" size="1"></td>
-			<td>$1 <input type="text" id="ones" size="1"></td>
-		</tr>
-		<tr>
-			<td>$5 <input type="text" id="fives" size="1"></td>
-			<td>$5 <input type="text" id="fives" size="1"></td>
-			<td>$5 <input type="text" id="fives" size="1"></td>
-		</tr>
-		<tr>
-			<td>$10 <input type="text" id="tens" size="1"></td>
-			<td>$10 <input type="text" id="tens" size="1"></td>
-			<td>$10 <input type="text" id="tens" size="1"></td>
-		</tr>
-		<tr>
-			<td>$20 <input type="text" id="twenties" size="1"></td>
-			<td>$20 <input type="text" id="twenties" size="1"></td>
-			<td>$20 <input type="text" id="twenties" size="1"></td>
-		</tr> -->
-		<!--<tr>
-			<td>Credit? <input type="radio" name="credit" value="y"> </td>
-			<td>Credit? <input type="radio" name="credit" value="y"> </td>
-			<td>Credit? <input type="radio" name="credit" value="y"> </td>
-		</tr>
-		<tr>
-			<td>Lend? <input type="radio" name="credit" value="y"> </td>
-			<td>Lend? <input type="radio" name="credit" value="y"> </td>
-			<td>Lend? <input type="radio" name="credit" value="y"> </td>
-		</tr>	-->		
-	<!-- </table> -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid header">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">CheckIt</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+            <ul class="nav">
+              <li><a href="#">My Account</a></li>
+              <li class="active"><a href="#about">QuickSplit</a></li> 
+              <li><a href="#about">Find an ATM</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-	<!-- <h4><button type="button" onclick="managerPreInit()">Split!</button></h4> -->
+    <div class="container">
+		<div class="jumbotron" id="to_write">
+		    <h1>QuickSplit</h1>
+		</br>
+		    <h2>Name <input type="text" id="name" name="name" size="10" value = "User"> </h2>
+			<h3> Amount to Pay: $ <input type="text" id="owes" size="1" value="0"> </h3>
+			<h4> $1 <input type="text" id="ones" size="1" value="0"></h4>
+			<h4> $5 <input type="text" id="fives" size="1" value="0"></h4>
+			<h4> $10 <input type="text" id="tens" size="1" value="0"></h4>
+			<h4> $20 <input type="text" id="twenties" size="1" value="0"> </h4>
 
-	<h3>Name <input type="text" id="name" name="name" size="10" value = "User"> </h3>
-	<h3> $1 <input type="text" id="ones" size="1" value="0"></h3>
-	<h3> $5 <input type="text" id="fives" size="1" value="0"></h3>
-	<h3> $10 <input type="text" id="tens" size="1" value="0"></h3>
-	<h3> $20 <input type="text" id="twenties" size="1" value="0"> </h3>
+	        <h4><button class="btn btn-lg btn-success" type="button" onclick="managerPreInitAddPerson()">Add More People</button></h4>
+			<h4><button class="btn btn-lg btn-success" type="button" onclick="managerPreInitReady()">Done!</button></h4>
+		</div>
+	</div> 
 
-	<h3> Ammount owed <input type="text" id="owes" size="1" value="0"> </h3>
-
-	<h4><button type="button" onclick="managerPreInitAddPerson()">Add More People</button></h4>
-
-	<h4><button type="button" onclick="managerPreInitReady()">Done!</button></h4>
-</div>
-</div> 
 </body>
 </html>

@@ -184,8 +184,6 @@ function managerInit (passedPeople, tipPercentage){
 	passedPeople = addTipCostToEveryone(passedPeople, tipPercentage);
 	newTotalOwed = sumTotals(passedPeople); //This doesn't actually matter whoops
 
-	returnStr = "<p id ='results'>";
-
 	for (person in passedPeople){
 		passedPeople[person].takenBills = new Array;
 	}
@@ -218,28 +216,36 @@ function addTipCostToEveryone(people, tip){
 }
 
 function makeComprehencible(){
-	
+	returnStr = "<div class='row row-offcanvas row-offcanvas-right'><div class='row'>";
+
 	for (person in results.people){
-		returnStr += whatWasPaidToPot (person);
+		returnStr += "<div class='span4'><h2>"+results.people[person].name+"</h2>";
+		returnStr += whatWasPaidToPot(person);
 		//returnStr += "\n";
 		returnStr += "</br>";
 		returnStr += whatWasPaidToOthers(person);
 		//returnStr += "\n";
 		returnStr += "</br>";
-		returnStr += results.people[person].name;
 		if (results.people[person].owes > 0){
-			returnStr += " still owes $";
+			returnStr += "You still owe $";
 			returnStr += roundTo2db(results.people[person].owes);
-		} else {
-			returnStr += " is still owed $";
+			returnStr += " to the group."
+		} else if (roundTo2db((0 - results.people[person].owes)) != 0){
+			returnStr += "You are owed $";
 			returnStr += roundTo2db((0 - results.people[person].owes));
+			returnStr += " back."
 		}
 		//returnStr += "\n \n";
-		returnStr += "</br> </br>";
+		returnStr += "</p> </div>";
+		console.log(returnStr);
 	}
 //	window.alert(returnStr);
-	returnStr += "</p>"
-	document.write(returnStr);
+	returnStr += "</div></div>"
+
+	$(".jumbotron").empty();
+
+	div = document.getElementById('to_write');
+	div.innerHTML = returnStr;
 
 }
 
@@ -254,7 +260,7 @@ function roundTo2db(num){
 }
 
 function whatWasPaidToPot(person){
-	str = results.people[person].name + " owes the pot ";
+	str = "<p>Pay the table ";
 	twenties = countPotOwed(20, person);
 	tens = countPotOwed(10, person);
 	fives = countPotOwed(5, person);
@@ -264,13 +270,13 @@ function whatWasPaidToPot(person){
 		str += "nothing";
 	} else {
 		if (twenties != 0){
-			str += twenties + " twenty dollar bill(s), ";
+			str += twenties + " twenty dollar bill(s) ";
 		}
 		if (tens != 0){
-			str += tens + " ten dollar bill(s), ";
+			str += tens + " ten dollar bill(s) ";
 		}
 		if (fives != 0){
-			str += fives + " five dollar bill(s), ";
+			str += fives + " five dollar bill(s) ";
 		}
 		if (ones != 0){
 		str += ones + " one dollar bill(s)";
@@ -296,25 +302,23 @@ function whatWasPaidToOthers(person){
 	var bigStr = "";
 	for (var each in results.people){
 		if (person != each){
-			var str = results.people[person].name + " owes " + 	results.people[each].name + " ";
 				var twenties = countPersonOwed(each, person, 20);
 				var tens = countPersonOwed(each, person, 10);
 				var fives = countPersonOwed(each, person, 5);
 				var ones = countPersonOwed(each, person, 1);
-			if (twenties+tens+fives+ones == 0){
-				str += "nothing";
-			} else {
+			if (twenties+tens+fives+ones != 0) {
+				var str = "Give " + results.people[each].name + " ";
 				if (twenties != 0){
-					str += twenties + " twenty dollar bill(s), ";
+					str += twenties + " twenty dollar bill(s) ";
 				}
 				if (tens != 0){
-					str += tens + " ten dollar bill(s), ";
+					str += tens + " ten dollar bill(s) ";
 				}
 				if (fives != 0){
-					str += fives + " five dollar bill(s), ";
+					str += fives + " five dollar bill(s) ";
 				}
 				if (ones != 0){
-				str += ones + " one dollar bill(s)";
+					str += ones + " one dollar bill(s)";
 				}
 
 			}
