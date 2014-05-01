@@ -154,15 +154,15 @@ function managerPreInitAddPerson(){
 
 function managerPreInitReady(){
 	managerPreInitAddPerson();
-	var total = window.prompt("What is the total owed by your group? (if unsure enter anything, the program will self correct)");
+//	var total = window.prompt("What is the total owed by your group? (if unsure enter anything, the program will self correct)");
 	var tip = window.prompt("What tip percentage would you like everyone to pay?");
-	managerInit(globalPeople, total, tip);
+	managerInit(globalPeople, tip);
 }
 
-function managerInit (passedPeople, passedTotalOwed, tipPercentage){
+function managerInit (passedPeople, tipPercentage){
 
 	//Functions for data checking and tip calculation
-	if(!matchingTotals(passedPeople, passedTotalOwed)){
+	/*if(!matchingTotals(passedPeople, passedTotalOwed)){
 		//prompt box to continue with the passed people total
 		var peopleSum = sumTotals(passedPeople)
 		var prompt = "Your input total and the sum of the totals of all parties without tip do not match. \n";
@@ -178,18 +178,13 @@ function managerInit (passedPeople, passedTotalOwed, tipPercentage){
 		}
 	} else {
 		newTotalOwed = passedTotalOwed;
-	}
+	}*/
 
 
 	passedPeople = addTipCostToEveryone(passedPeople, tipPercentage);
-	newTotalOwed = sumTotals(passedPeople);
+	newTotalOwed = sumTotals(passedPeople); //This doesn't actually matter whoops
 
-
-
-	
-
-
-	returnStr = "";
+	returnStr = "<p id ='results'>";
 
 	for (person in passedPeople){
 		passedPeople[person].takenBills = new Array;
@@ -209,7 +204,7 @@ function matchingTotals(people, totalOwed){
 function sumTotals(people){
 	var sum = 0;
 	for (person in people){
-		sum += people[person].owes;
+		sum += Number(people[person].owes);
 	}
 	return sum;
 }
@@ -226,9 +221,11 @@ function makeComprehencible(){
 	
 	for (person in results.people){
 		returnStr += whatWasPaidToPot (person);
-		returnStr += "\n";
+		//returnStr += "\n";
+		returnStr += "</br>";
 		returnStr += whatWasPaidToOthers(person);
-		returnStr += "\n";
+		//returnStr += "\n";
+		returnStr += "</br>";
 		returnStr += results.people[person].name;
 		if (results.people[person].owes > 0){
 			returnStr += " still owes $";
@@ -237,9 +234,12 @@ function makeComprehencible(){
 			returnStr += " is still owed $";
 			returnStr += (0 - results.people[person].owes);
 		}
-		returnStr += "\n \n";
+		//returnStr += "\n \n";
+		returnStr += "</br> </br>";
 	}
-	window.alert(returnStr);
+//	window.alert(returnStr);
+	returnStr += "</p>"
+	document.write(returnStr);
 
 }
 
@@ -319,7 +319,8 @@ function whatWasPaidToOthers(person){
 
 			}
 			bigStr += str;
-			bigStr += "\n";
+			//bigStr += "\n";
+			bigStr += "</br>";
 
 		}
 	}
