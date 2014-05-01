@@ -30,8 +30,11 @@ function dataReady(position)
     URLstring += "&types=atm&sensor=true&rankby=distance&key=";
     URLstring += key;
 
+    var oauthToken = gapi.auth.getToken();
+
     request = new XMLHttpRequest();
     request.open("get", URLstring, true); 
+    xhr.setRequestHeader('Authorization', 'Bearer ' + oauthToken.access_token);
     request.onreadystatechange = getATMS;
     request.send(null); 
 }
