@@ -2,10 +2,6 @@
 
 function init()
 {
-    //console.log("in init");
-    //request = new XMLHttpRequest();
-
-    //request.onreadystatechange = getLocation;  
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(dataReady, errorHandler);
     }else{
@@ -23,18 +19,6 @@ function errorHandler(err){
     }
     
 }
-
-/*
-function getLocation()
-{
-	console.log("in getlocation");
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(dataReady, errorHandler);
-    }else{
-        alert("Geolocation is not supported by your web browser.  What a shame!");
-    }
-
-}*/
 
 function dataReady(position)
 {

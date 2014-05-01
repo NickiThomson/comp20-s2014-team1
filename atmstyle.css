@@ -1,5 +1,12 @@
 html { height: 100% }
 body { height: 100%; margin: 0px; padding: 0px }
-#map_canvas { width: 100%; height: 100% }
-table, th, td { border-collapse: collapse; border: 1px solid black; text-align: center }
-caption { text-align: left; font-size: 15px; font-weight: bold }
+#map_canvas { width: 100%; height: 100%; position: absolute; top: 40px}
+
+.header {
+  background-color: #85EDA1;
+}
+
+.navbar-inner {
+  border: none;
+}
+
