@@ -260,7 +260,7 @@ function roundTo2db(num){
 }
 
 function whatWasPaidToPot(person){
-	str = "<p>Pay the table ";
+	str = "<p>Pay the group ";
 	twenties = countPotOwed(20, person);
 	tens = countPotOwed(10, person);
 	fives = countPotOwed(5, person);
@@ -320,11 +320,10 @@ function whatWasPaidToOthers(person){
 				if (ones != 0){
 					str += ones + " one dollar bill(s)";
 				}
-
+			
+				bigStr += str;
+				bigStr += "</br>";
 			}
-			bigStr += str;
-			//bigStr += "\n";
-			bigStr += "</br>";
 
 		}
 	}
