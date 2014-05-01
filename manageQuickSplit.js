@@ -229,10 +229,10 @@ function makeComprehencible(){
 		returnStr += results.people[person].name;
 		if (results.people[person].owes > 0){
 			returnStr += " still owes $";
-			returnStr += results.people[person].owes;
+			returnStr += roundTo2db(results.people[person].owes);
 		} else {
 			returnStr += " is still owed $";
-			returnStr += (0 - results.people[person].owes);
+			returnStr += roundTo2db((0 - results.people[person].owes));
 		}
 		//returnStr += "\n \n";
 		returnStr += "</br> </br>";
@@ -245,11 +245,11 @@ function makeComprehencible(){
 
 function roundTo2db(num){
 	var newNum = num.toFixed(2);
-	if ((num - Number(num.toFixed(0)) == 0)){
+	/*if ((num - Number(num.toFixed(0)) == 0)){
 		newNum += "00";
 	} else if ((num - Number(num.toFixed(1)) == 0)){
 		newNum += "0";
-	}
+	}*/
 	return newNum;
 }
 
